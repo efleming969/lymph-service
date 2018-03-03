@@ -25,16 +25,27 @@ export default class HTTP {
             }
 
             const req = NativeHTTP.request( options, function ( res ) {
-                let data: string[] = []
+                let response_data: string[] = []
 
                 res.setEncoding( "utf8" )
 
                 res.on( "data", function ( chunk: string ) {
-                    data.push( chunk )
+                    response_data.push( chunk )
                 } )
 
                 res.on( "end", function () {
-                    resolve( JSON.parse( data.join( "" ) ) )
+                    let body = undefined
+
+                    try {
+                        body = JSON.parse( response_data.join( "" ) )
+                    } catch ( e ) {
+                    }
+
+                    resolve( {
+                        status: res.statusCode,
+                        headers: res.headers,
+                        body: body
+                    } )
                 } )
             } )
 

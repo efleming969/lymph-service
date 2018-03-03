@@ -3,8 +3,7 @@
     "module": "commonjs",
     "target": "es2015",
     "noImplicitAny": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
+    "sourceMap": true,
     "moduleResolution": "node"
   }
 }

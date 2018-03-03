@@ -3,10 +3,18 @@ import HTTP from "./HTTP"
 test( "getting json data from remote service", function () {
     const http = new HTTP( "https://httpbin.org" )
 
-    return http.get( "/get?name=foobar" ).then( function ( data ) {
-        expect( data.args ).toEqual( {
+    return http.get( "/get?name=foobar" ).then( function ( response ) {
+        expect( response.body.args ).toEqual( {
             name: "foobar"
         } )
+    } )
+} )
+
+test( "handling an error when get from invalid uri", function () {
+    const http = new HTTP( "https://httpbin.org" )
+
+    return http.get( "/invalid" ).then( function ( response ) {
+        expect( response.status ).toEqual( 404 )
     } )
 } )
 
@@ -28,3 +36,4 @@ test( "handling an error when posting to invalid uri", function () {
         expect( response.status ).toEqual( 404 )
     } )
 } )
+
