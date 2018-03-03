@@ -2,8 +2,9 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2015",
-    "sourceMap": true,
     "noImplicitAny": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
     "moduleResolution": "node"
   }
 }
